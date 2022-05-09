@@ -14,7 +14,7 @@ double PredictWinner(string hpf, string hpa, string apf, string apa) {
     double awayPA = stod(apa);
     double offense, defense;
 
-    std::cout << homePF << " " << homePA << " " << awayPF << " " << awayPA << endl;
+    cout << homePF << " " << homePA << " " << awayPF << " " << awayPA << endl;
 
     if (homePF > awayPF) 
         offense = abs(homePF - awayPF);
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
     fRatings.open("TeamRatings.csv");
 
     fRatings.precision(4);
-    std::cout.precision(4);
+    cout.precision(4);
 
     fRatings << "Team Name,HOR,HDR,AOR,ADR";
 
@@ -54,19 +54,19 @@ int main(int argc, char *argv[]) {
         teamRatings[i].push_back(0.0);
     }
 
-    std::getline(f, tempLine);
+    getline(f, tempLine);
     for (int i = 0; i < 32; i++) {
         homeGames = 0;
         awayGames = 0;
 
-        std::getline(f, tempLine);
+        getline(f, tempLine);
         stringstream ss(tempLine);
-        std::getline(ss, teamName, ','); //gets team's name
+        getline(ss, teamName, ','); //gets team's name
 
         fRatings << '\n' << teamName;
 
         for (int j = 1; j <= 18*4; j++) {
-            std::getline(ss, tempData, ',');
+            getline(ss, tempData, ',');
             if (tempData == "") {}
             else {
                 switch(count) {
@@ -132,33 +132,33 @@ int main(int argc, char *argv[]) {
 
     newF.open("TeamRatings.csv");
 
-    std::cout << "Which teams are playing? (homeTeam awayTeam)" << endl;
-    std::cin >> hTeam >> aTeam;
+    cout << "Which teams are playing? (homeTeam awayTeam)" << endl;
+    cin >> hTeam >> aTeam;
 
     while (hTeam != "q") {
-        std::getline(newF, newLine);
+        getline(newF, newLine);
         for (int i = 0; i < 32; i++) {
-            std::getline(newF, newLine);
+            getline(newF, newLine);
             stringstream ss(newLine);
-            std::getline(ss, newData, ',');
+            getline(ss, newData, ',');
             if (newData == hTeam) {
-                std::getline(ss, homePF, ',');
-                std::getline(ss, homePA, ',');
+                getline(ss, homePF, ',');
+                getline(ss, homePA, ',');
                 break;
             }
         }
         newF.clear();
         newF.seekg(0, ios::beg);
-        std::getline(newF, newLine);
+        getline(newF, newLine);
         for (int i = 0; i < 32; i++) {
-            std::getline(newF, newLine);
+            getline(newF, newLine);
             stringstream ss(newLine);
-            std::getline(ss, newData, ',');
+            getline(ss, newData, ',');
             if (newData == aTeam) {
-                std::getline(ss, newData, ',');
-                std::getline(ss, newData, ',');
-                std::getline(ss, awayPF, ',');
-                std::getline(ss, awayPA, ',');
+                getline(ss, newData, ',');
+                getline(ss, newData, ',');
+                getline(ss, awayPF, ',');
+                getline(ss, awayPA, ',');
                 break;
             }
         }
@@ -168,14 +168,14 @@ int main(int argc, char *argv[]) {
         int score = PredictWinner(homePF, homePA, awayPF, awayPA);
 
         if (score > 0)
-            std::cout << hTeam << " wins by " << score << "!" << endl;
+            cout << hTeam << " wins by " << score << "!" << endl;
         else if (score < 0)
-            std::cout << aTeam << " wins by " << abs(score) << "!" << endl;
+            cout << aTeam << " wins by " << abs(score) << "!" << endl;
         else
-            std::cout << "Too close to accurately predict!" << endl;
+            cout << "Too close to accurately predict!" << endl;
 
-        std::cout << "Which teams are playing? (homeTeam awayTeam)" << endl;
-        std::cin >> hTeam >> aTeam;
+        cout << "Which teams are playing? (homeTeam awayTeam)" << endl;
+        cin >> hTeam >> aTeam;
     }
 
     return 0;
