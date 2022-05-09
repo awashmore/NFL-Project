@@ -9,14 +9,14 @@ To run the code on Windows:
   ```
   Vegas.py
   g++ VegasAlgorithm.cpp
-  ./a.out
+  ./a.exe
   ```
 
 To run the code on Linux:
 ```
 Vegas.py
 g++ VegasAlgorithm.cpp
-./a.exe
+./a.out
 ```
 
 You will then type in the matchup that you want results for using the following format:
