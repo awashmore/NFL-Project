@@ -5,6 +5,7 @@ import string
 import pandas as pd
 import numpy as np
 
+#adding the rames for the different teams
 frame21 = pd.DataFrame(index = 
 [
     '49ers',
