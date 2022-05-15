@@ -8,14 +8,16 @@
 using namespace std;
 
 double PredictWinner(string hpf, string hpa, string apf, string apa) {
-    double homePF = stod(hpf);
+    double homePF = stod(hpf); //turns all of the string values into doubles
     double homePA = stod(hpa);
     double awayPF = stod(apf);
     double awayPA = stod(apa);
     double offense, defense;
 
-    cout << homePF << " " << homePA << " " << awayPF << " " << awayPA << endl;
+    //cout << homePF << " " << homePA << " " << awayPF << " " << awayPA << endl;
 
+    //Current algorithm
+    //TODO: Update algorithm
     if (homePF > awayPF) 
         offense = abs(homePF - awayPF);
     else
@@ -33,21 +35,21 @@ int main(int argc, char *argv[]) {
     ifstream f;
     ofstream fRatings;
 
-    f.open("VegasNumbers.csv");
-    fRatings.open("TeamRatings.csv");
+    f.open("VegasNumbers.csv"); //opens excel spreadsheet made from Vegas.py
+    fRatings.open("TeamRatings.csv"); //opens new excel spreadsheet to write to
 
     fRatings.precision(4);
     cout.precision(4);
 
-    fRatings << "Team Name,HOR,HDR,AOR,ADR";
+    fRatings << "Team Name,HOR,HDR,AOR,ADR"; //write the columns to the spreadhseet
 
-    vector<vector<double>> teamRatings(32);
+    vector<vector<double>> teamRatings(32); //create a vector of vectors to contain all of the data from VegasNumbers.csv
 
     string tempLine, tempData, teamName;
     int count = 1;
     double awayGames, homeGames, hor, hdr, aor, adr;
 
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 32; i++) { //initialize the vector
         teamRatings[i].push_back(0.0);
         teamRatings[i].push_back(0.0);
         teamRatings[i].push_back(0.0);
@@ -65,7 +67,7 @@ int main(int argc, char *argv[]) {
 
         fRatings << '\n' << teamName;
 
-        for (int j = 1; j <= 18*4; j++) {
+        for (int j = 1; j <= 18*4; j++) { //18 weeks times 4 columns, the 18 will be updated anytime a new week occurs
             getline(ss, tempData, ',');
             if (tempData == "") {}
             else {
@@ -114,13 +116,13 @@ int main(int argc, char *argv[]) {
             
         }
 
-        hor = teamRatings[i][0] / homeGames;
-        hdr = teamRatings[i][1] / homeGames;
-        aor = teamRatings[i][2] / awayGames;
-        adr = teamRatings[i][3] / awayGames;
+        hor = teamRatings[i][0] / homeGames; //gets fome offense rating
+        hdr = teamRatings[i][1] / homeGames; //home defense rating
+        aor = teamRatings[i][2] / awayGames; //away offense rating
+        adr = teamRatings[i][3] / awayGames; //away defense rating
 
-        fRatings << ',' << hor << ',' << hdr << ',' << aor << ',' << adr;
-        teamRatings.clear();
+        fRatings << ',' << hor << ',' << hdr << ',' << aor << ',' << adr; //input the ratings for every team
+        teamRatings.clear(); //clear the vector for the current team
     }
 
     fRatings.close();
@@ -132,10 +134,10 @@ int main(int argc, char *argv[]) {
 
     newF.open("TeamRatings.csv");
 
-    cout << "Which teams are playing? (homeTeam awayTeam)" << endl;
+    cout << "Which teams are playing? (homeTeam awayTeam)" << endl; //gets the matchup that the user wants the winner of
     cin >> hTeam >> aTeam;
 
-    while (hTeam != "q") {
+    while (hTeam != "q") { //finds the home team's data
         getline(newF, newLine);
         for (int i = 0; i < 32; i++) {
             getline(newF, newLine);
@@ -147,7 +149,7 @@ int main(int argc, char *argv[]) {
                 break;
             }
         }
-        newF.clear();
+        newF.clear(); //resets and finds the away team's data
         newF.seekg(0, ios::beg);
         getline(newF, newLine);
         for (int i = 0; i < 32; i++) {
@@ -165,7 +167,7 @@ int main(int argc, char *argv[]) {
         newF.clear();
         newF.seekg(0, ios::beg);
 
-        int score = PredictWinner(homePF, homePA, awayPF, awayPA);
+        int score = PredictWinner(homePF, homePA, awayPF, awayPA); //plug the data into the algorithm
 
         if (score > 0)
             cout << hTeam << " wins by " << score << "!" << endl;
