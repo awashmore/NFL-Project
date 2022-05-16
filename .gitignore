@@ -9,7 +9,9 @@
 *.user
 *.userosscache
 *.sln.docstates
-.exe.csv
+.exe
+.csv
+.rst
 testWebsites.py
 XlsxWriter-master/
 .vscode/
