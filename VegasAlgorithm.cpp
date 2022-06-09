@@ -14,8 +14,6 @@ double PredictWinner(string hpf, string hpa, string apf, string apa) {
     double awayPA = stod(apa);
     double offense, defense;
 
-    //cout << homePF << " " << homePA << " " << awayPF << " " << awayPA << endl;
-
     //Current algorithm
     //TODO: Update algorithm
     if (homePF > awayPF) 
@@ -39,7 +37,7 @@ int main(int argc, char *argv[]) {
     fRatings.open("TeamRatings.csv"); //opens new excel spreadsheet to write to
 
     fRatings.precision(4);
-    cout.precision(4);
+    std::cout.precision(4);
 
     fRatings << "Team Name,HOR,HDR,AOR,ADR"; //write the columns to the spreadhseet
 
@@ -128,16 +126,24 @@ int main(int argc, char *argv[]) {
     fRatings.close();
     f.close();
 
-    ifstream newF;
+    ifstream newF,matchups;
     string hTeam, aTeam, newLine, newData;
     string homePF, homePA, awayPF, awayPA;
 
     newF.open("TeamRatings.csv");
+    matchups.open("WeeklyGames.txt");
 
-    cout << "Which teams are playing? (homeTeam awayTeam)" << endl; //gets the matchup that the user wants the winner of
-    cin >> hTeam >> aTeam;
+    // cout << "Which teams are playing? (homeTeam awayTeam)" << endl; //gets the matchup that the user wants the winner of
+    // cin >> hTeam >> aTeam;
 
-    while (hTeam != "q") { //finds the home team's data
+    for (int i = 0; i < 32; i++) { //finds the home and away team's data for every matchup
+        getline(matchups, newLine);
+
+        newLine.pop_back();
+
+        hTeam = newLine.substr(0, newLine.find(','));
+        aTeam = newLine.substr(newLine.find(',') + 1);
+
         getline(newF, newLine);
         for (int i = 0; i < 32; i++) {
             getline(newF, newLine);
@@ -170,14 +176,13 @@ int main(int argc, char *argv[]) {
         int score = PredictWinner(homePF, homePA, awayPF, awayPA); //plug the data into the algorithm
 
         if (score > 0)
-            cout << hTeam << " wins by " << score << "!" << endl;
+            std::cout << hTeam << " beat the " << aTeam << " by " << score << "!" << endl;
         else if (score < 0)
-            cout << aTeam << " wins by " << abs(score) << "!" << endl;
+            std::cout << aTeam << " beat the " << hTeam << " by " << score*(-1.0) << "!" << endl;
         else
-            cout << "Too close to accurately predict!" << endl;
+            std::cout << "Too close to accurately predict between " << hTeam << " and " << aTeam << "!" << endl;
 
-        cout << "Which teams are playing? (homeTeam awayTeam)" << endl;
-        cin >> hTeam >> aTeam;
+        std::cout << endl;
     }
 
     return 0;

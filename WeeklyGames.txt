@@ -1,0 +1,16 @@
+Bills,Ravens
+Texans,Broncos
+Cowboys,Bears
+Falcons,ARI
+Dolphins,Bengals
+Colts,Chiefs
+Giants,Lions
+Panthers,Rams
+Patriots,Browns
+Jaguars,Chargers
+Eagles,Packers
+Saints,49ers
+Jets,Steelers
+Titans,Raiders
+WAS,Vikings
+TB,Seahawks
