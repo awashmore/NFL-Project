@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
             
         }
 
-        hor = teamRatings[i][0] / homeGames; //gets fome offense rating
+        hor = teamRatings[i][0] / homeGames; //gets home offense rating
         hdr = teamRatings[i][1] / homeGames; //home defense rating
         aor = teamRatings[i][2] / awayGames; //away offense rating
         adr = teamRatings[i][3] / awayGames; //away defense rating
