@@ -48,7 +48,7 @@ f = open('VegasNumbers.csv', 'r+')
 f.truncate(0) #removes all previous data in the spreadsheet
 
 #for every nfl week we want to look at
-for x in range (1,19):
+for x in range (1,18):
     #goes to the usatoday website for every week of the specified season
     html_text = requests.get("https://sportsdata.usatoday.com/football/nfl/scores?type=Week+" + str(x) + "&season=2021-2022").text
     
