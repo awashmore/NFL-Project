@@ -1,10 +1,10 @@
 # NFL-Project
 
 ## 2022-23 Season Accuracy
-22/32 - 61.1%
+22/32 - 68.75%
 
 ### Week 1 Accuracy
-10/16 - 68.75%
+10/16 - 62.5%
 ### Week 2 Accuracy
 12/16 - 75%
 ### Week 3 Accuracy
