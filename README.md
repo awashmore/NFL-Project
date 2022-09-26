@@ -1,14 +1,14 @@
 # NFL-Project
 
 ## 2022-23 Season Accuracy
-22/32 - 68.75%
+29/47 - 61.7%
 
 ### Week 1 Accuracy
 10/16 - 62.5%
 ### Week 2 Accuracy
 12/16 - 75%
 ### Week 3 Accuracy
-
+7/15 - 46.67%
 
 ## About this project
 In this project, I use Python and C++. 
